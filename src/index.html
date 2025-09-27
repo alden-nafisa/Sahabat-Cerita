@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="manifest" href="/Sahabat-Cerita/manifest.json?v=6" />
+    <meta name="theme-color" content="#3b82f6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="SahabatCerita" />
+    <link rel="apple-touch-icon" href="favicon.png" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Link ke styles.css dihapus, gunakan CSS bundle Vite di assets -->
+  <title>SahabatCerita</title>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="module" src="scripts/index.js"></script>
+    <script>
+      // Service Worker Registration
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+
+      // PWA Install prompt handler (no UI button)
+      let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e; // kept for potential future use
+      });
+      window.addEventListener('appinstalled', () => {
+        deferredPrompt = null;
+        console.log('PWA installed');
+      });
+    </script>
+  </head>
+  <body>
+    <header>
+      <a href="#main-content" class="skip-link" tabindex="1">Skip to content</a>
+      <div class="main-header container">
+  <a class="brand-name" href="#/">Sahabat<span style="color:#a259c6;">Cerita</span></a>
+        
+        <nav id="navigation-drawer" class="navigation-drawer" style="margin-left:auto;">
+          <ul id="nav-list" class="nav-list">
+            <li><a href="#/"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="#/about"><i class="fas fa-info-circle"></i> About Us</a></li>
+            <li><a href="#/contact"><i class="fas fa-envelope"></i> Contact Us</a></li>
+            <li><a href="#/offline-stories" id="nav-offline-stories" style="display:none;"><i class="fas fa-database"></i> Offline Stories</a></li>
+            <li><a href="#/favorites" id="nav-favorites" style="display:none;"><i class="fas fa-bookmark"></i> Favorit</a></li>
+            <li><a href="#/login" class="btn btn-primary btn-large gradient-btn" style="margin-left:8px;"><i class="fas fa-sign-in-alt"></i> Login</a></li>
+            <li><a href="#/register" class="btn btn-primary btn-large gradient-btn" style="margin-left:8px;"><i class="fas fa-user-plus"></i> Sign In</a></li>
+            <li><button id="logout-btn" class="btn" style="display:none;"><i class="fas fa-sign-out-alt"></i> Logout</button></li>
+          </ul>
+        </nav>
+        <button id="drawer-button" class="drawer-button">☰</button>
+      </div>
+    </header>
+
+    <main id="main-content" class="main-content" tabindex="-1"></main>
+    
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3><span style="color:#111;">Sahabat</span><span style="color:#7c3aad;">Cerita</span></h3>
+            <p style="color:#111;">Tempat terbaik berbagi <span style="color:#7c3aad;">kisah</span> dan <span style="color:#7c3aad;">inspirasi</span> untuk komunitas developer Indonesia</p>
+          </div>
+          <div class="footer-section">
+            <h4>Navigasi</h4>
+            <ul>
+              <li><a href="#/">Beranda</a></li>
+              <li><a href="#/login" id="footer-login">Masuk</a></li>
+              <li><a href="#/register" id="footer-register">Daftar</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Fitur</h4>
+            <ul>
+              <li>Bagikan Cerita</li>
+              <li>Lokasi Interaktif</li>
+              <li>Notifikasi Push</li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 Dicoding Story. Dibuat dengan ❤️ untuk komunitas developer Indonesia.</p>
+        </div>
+      </div>
+    </footer>
+    <!-- Mobile Skip FAB -->
+    <a href="#main-content" class="skip-fab" aria-label="Skip to content" title="Skip to content">
+      <i class="fas fa-forward"></i>
+    </a>
+    <style>
+      .nav-list > li > a:not(.gradient-btn) {
+        color: #a259c6 !important;
+        font-weight: 600;
+        transition: color 0.2s;
+      }
+      .nav-list > li > a:not(.gradient-btn):hover,
+      .nav-list > li > a:not(.gradient-btn):focus {
+        color: #7c3aad !important;
+      }
+      .gradient-btn, .btn-primary {
+        background: linear-gradient(90deg,#a259c6 0%,#f7b0e4 100%) !important;
+        color: #fff !important;
+        border: none !important;
+        font-weight: 600;
+        box-shadow: 0 4px 16px rgba(162,89,198,0.10);
+        transition: filter 0.2s;
+      }
+      .btn-outline {
+        background: #fff !important;
+        color: #a259c6 !important;
+        border: none !important;
+        font-weight: 600;
+        box-shadow: 0 4px 16px rgba(162,89,198,0.10);
+        transition: filter 0.2s;
+      }
+      .btn-outline:hover, .btn-outline:focus {
+        background: #f7f6fb !important;
+        color: #7c3aad !important;
+      }
+      .gradient-btn:hover, .gradient-btn:focus, .btn-primary:hover, .btn-primary:focus {
+        filter: brightness(0.95) saturate(1.2);
+        color: #fff !important;
+      }
+      .footer {
+        background: #f7b0e4 !important;
+        color: #fff !important;
+      }
+      .footer a, .footer h3, .footer h4, .footer li {
+        color: #7c3aad !important;
+      }
+      .footer p.footer-slogan {
+        color: #111 !important;
+      }
+      .footer-bottom {
+        border-top: 1px solid rgba(255,255,255,0.15);
+        color: #fff !important;
+      }
+    </style>
+    <script>
+      (function(){
+        const logoutBtn = document.getElementById('logout-btn');
+        const navList = document.getElementById('nav-list');
+        function updateAuthLinks(){
+          const token = localStorage.getItem('auth_token');
+          const loginLink = navList.querySelector('a[href="#/login"]');
+          const registerLink = navList.querySelector('a[href="#/register"]');
+          const offlineStoriesLink = document.querySelector('#nav-offline-stories');
+          const favoritesLink = document.querySelector('#nav-favorites');
+          const footerLogin = document.querySelector('#footer-login');
+          const footerRegister = document.querySelector('#footer-register');
+          
+          if(token){
+            if(loginLink) loginLink.style.display = 'none';
+            if(registerLink) registerLink.style.display = 'none';
+            if(offlineStoriesLink) offlineStoriesLink.style.display = '';
+            if(favoritesLink) favoritesLink.style.display = '';
+            if(footerLogin) footerLogin.style.display = 'none';
+            if(footerRegister) footerRegister.style.display = 'none';
+            logoutBtn.style.display = 'inline-block';
+          } else {
+            if(loginLink) loginLink.style.display = '';
+            if(registerLink) registerLink.style.display = '';
+            if(offlineStoriesLink) offlineStoriesLink.style.display = 'none';
+            if(favoritesLink) favoritesLink.style.display = 'none';
+            if(footerLogin) footerLogin.style.display = 'block';
+            if(footerRegister) footerRegister.style.display = 'block';
+            logoutBtn.style.display = 'none';
+          }
+        }
+        updateAuthLinks();
+        window.addEventListener('hashchange', updateAuthLinks);
+        logoutBtn?.addEventListener('click', function(){
+          localStorage.removeItem('auth_token');
+          updateAuthLinks();
+          location.hash = '#/login';
+        });
+      })();
+
+      // Skip to content functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const skipLink = document.querySelector('.skip-link');
+        const mainContent = document.querySelector('#main-content');
+        
+        if (skipLink && mainContent) {
+          skipLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            mainContent.focus();
+            mainContent.scrollIntoView({ behavior: 'smooth' });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -173,21 +173,21 @@ export default class HomePage {
               <div class="features-grid">
                 <div class="feature-card">
                   <div class="feature-icon" style="width:64px;height:64px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#a259c6,#f7b0e4);border-radius:16px;margin:0 auto 1rem auto;">
-                    <img src="images/profile-1.png" alt="Andi" style="width:56px;height:56px;border-radius:50%;object-fit:cover;background:#fff;" />
+                    <img src="images/Profile-1.png" alt="Andi" style="width:56px;height:56px;border-radius:50%;object-fit:cover;background:#fff;" />
                   </div>
                   <h3>"Aplikasinya keren, mudah digunakan, dan sangat membantu!"</h3>
                   <p>- Andi, Mobile Developer</p>
                 </div>
                 <div class="feature-card">
                   <div class="feature-icon" style="width:64px;height:64px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#a259c6,#f7b0e4);border-radius:16px;margin:0 auto 1rem auto;">
-                    <img src="images/profile-2.png" alt="Sari" style="width:56px;height:56px;border-radius:50%;object-fit:cover;background:#fff;" />
+                    <img src="images/Profile-2.png" alt="Sari" style="width:56px;height:56px;border-radius:50%;object-fit:cover;background:#fff;" />
                   </div>
                   <h3>"Fitur peta dan media sangat inovatif untuk berbagi cerita."</h3>
                   <p>- Sari, Web Enthusiast</p>
                 </div>
                 <div class="feature-card">
                   <div class="feature-icon" style="width:64px;height:64px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#a259c6,#f7b0e4);border-radius:16px;margin:0 auto 1rem auto;">
-                    <img src="images/profile-3.png" alt="Budi" style="width:56px;height:56px;border-radius:50%;object-fit:cover;background:#fff;" />
+                    <img src="images/Profile-3.png" alt="Budi" style="width:56px;height:56px;border-radius:50%;object-fit:cover;background:#fff;" />
                   </div>
                   <h3>"Push notification-nya bikin selalu update cerita baru!"</h3>
                   <p>- Budi, Backend Engineer</p>

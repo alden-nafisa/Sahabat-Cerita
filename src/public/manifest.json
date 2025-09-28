@@ -1,34 +1,34 @@
 {
-  "name": "Dicoding Story",
+  "name": "Sahabat Cerita",
   "short_name": "Story",
-  "id": "/DicodingStory/",
-  "start_url": "/DicodingStory/",
-  "scope": "/DicodingStory/",
+  "id": "/Sahabat-Cerita/",
+  "start_url": "/Sahabat-Cerita/",
+  "scope": "/Sahabat-Cerita/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#3b82f6",
-  "description": "Berbagi cerita seputar Dicoding dengan peta, kamera, dan notifikasi.",
+  "description": "Berbagi cerita seputar Sahabat Cerita dengan peta, kamera, dan notifikasi.",
   "icons": [
     {
-      "src": "/DicodingStory/images/icons/manifest-icon-192.maskable.png",
+      "src": "/Sahabat-Cerita/images/icons/manifest-icon-192.maskable.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/DicodingStory/images/icons/manifest-icon-192.maskable.png",
+      "src": "/Sahabat-Cerita/images/icons/manifest-icon-192.maskable.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable"
     },
     {
-      "src": "/DicodingStory/images/icons/manifest-icon-512.maskable.png",
+      "src": "/Sahabat-Cerita/images/icons/manifest-icon-512.maskable.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/DicodingStory/images/icons/manifest-icon-512.maskable.png",
+      "src": "/Sahabat-Cerita/images/icons/manifest-icon-512.maskable.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -39,10 +39,10 @@
       "name": "Tambah Cerita",
       "short_name": "Add Story",
       "description": "Buka form tambah cerita",
-      "url": "/DicodingStory/#/add-story",
+      "url": "/Sahabat-Cerita/#/add-story",
       "icons": [
         {
-          "src": "/DicodingStory/images/icons/manifest-icon-192.maskable.png",
+          "src": "/Sahabat-Cerita/images/icons/manifest-icon-192.maskable.png",
           "sizes": "192x192",
           "type": "image/png"
         }
@@ -51,10 +51,10 @@
     {
       "name": "Beranda",
       "short_name": "Home",
-      "url": "/DicodingStory/#/",
+      "url": "/Sahabat-Cerita/#/",
       "icons": [
         {
-          "src": "/DicodingStory/images/icons/manifest-icon-192.maskable.png",
+          "src": "/Sahabat-Cerita/images/icons/manifest-icon-192.maskable.png",
           "sizes": "192x192",
           "type": "image/png"
         }

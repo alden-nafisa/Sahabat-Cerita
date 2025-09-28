@@ -1,5 +1,5 @@
 // Service Worker untuk PWA
-const CACHE_NAME = 'dicoding-story-v2';
+const CACHE_NAME = 'Sahabat-Cerita-v2';
 const urlsToCache = [
   './',
   './styles/styles.css',
@@ -85,7 +85,7 @@ self.addEventListener('activate', (event) => {
 // Push notification event
 self.addEventListener('push', (event) => {
   const options = {
-    body: event.data ? event.data.text() : 'Ada cerita baru di Dicoding Story!',
+    body: event.data ? event.data.text() : 'Ada cerita baru di SahabatCerita!',
     icon: '/favicon.png',
     badge: '/favicon.png',
     vibrate: [100, 50, 100],
@@ -108,7 +108,7 @@ self.addEventListener('push', (event) => {
   };
 
   event.waitUntil(
-    self.registration.showNotification('Dicoding Story', options)
+    self.registration.showNotification('SahabatCerita', options)
   );
 });
 

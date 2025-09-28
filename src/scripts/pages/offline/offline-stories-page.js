@@ -25,7 +25,7 @@ class OfflineStoriesPage {
             <p class="stories-hero-desc">Kumpulan cerita offline yang telah disediakan untuk Anda. Baca kembali kapan saja, bahkan saat offline!</p>
           </div>
           <div class="stories-hero-image">
-            <img src="images/story-3.png" alt="Ilustrasi membaca buku di malam hari" loading="eager" />
+            <img src="images/story-2.png" alt="Ilustrasi membaca buku di malam hari" loading="eager" />
           </div>
         </div>
         

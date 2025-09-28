@@ -53,7 +53,13 @@ self.addEventListener('fetch', (event) => {
     caches.match(request).then((cached) => {
       const networkFetch = fetch(request)
         .then((response) => {
-          if (response && response.status === 200 && response.type !== 'opaque') {
+          // Only cache http(s) requests, skip chrome-extension and other unsupported schemes
+          if (
+            response &&
+            response.status === 200 &&
+            response.type !== 'opaque' &&
+            (request.url.startsWith('http://') || request.url.startsWith('https://'))
+          ) {
             const responseToCache = response.clone();
             caches.open(CACHE_NAME).then((cache) => cache.put(request, responseToCache));
           }
